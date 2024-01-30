@@ -53,21 +53,37 @@ FROM address;
 
 -- 7. What film has the most actors in it? (use film_actor table and get film_id)
 
-SELECT title, film_actor.film_id, COUNT(actor_id) as count
+SELECT title, film_actor.film_id, COUNT(*) as count
 FROM film_actor
 JOIN film ON film_actor.film_id = film.film_id
 GROUP BY title, film_actor.film_id
 ORDER BY count DESC
-LIMIT 1;
+LIMIT 1
+
 
 -- A) Lambs Cincinatti has the most actors
 
 -- 8. From store_id 1, how many customers have a last name ending with ‘es’? (use customer table)
-
+# Question
 SELECT COUNT(*) FROM customer
 WHERE last_name LIKE '%es'
 
+
 -- A) There are 21 customers last names that end in 'es'
+
+
+-- 9. How many payment amounts (4.99, 5.99, etc.) had a number of rentals above 250 for customers
+-- with ids between 380 and 430? (use group by and having > 250)
+
+SELECT COUNT(*) as above250Rentals FROM payment
+WHERE customer_id
+BETWEEN 380 and 430
+HAVING COUNT(rental_id) > 250
+
+-- A) The amount of payments is 1257 that have 250 rentals and ids between 380 and 430
+
+
+
 
 -- 10. Within the film table, how many rating categories are there? And what rating has the most movies total?
 SELECT COUNT(DISTINCT(rating)) AS uniqueRatings FROM film;
