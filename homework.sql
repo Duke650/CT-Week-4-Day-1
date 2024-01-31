@@ -64,9 +64,10 @@ LIMIT 1
 -- A) Lambs Cincinatti has the most actors
 
 -- 8. From store_id 1, how many customers have a last name ending with ‘es’? (use customer table)
-# Question
 SELECT COUNT(*) FROM customer
-WHERE last_name LIKE '%es'
+WHERE last_name LIKE '%es' AND store_id = 1
+
+
 
 
 -- A) There are 21 customers last names that end in 'es'
